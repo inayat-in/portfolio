@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxe Gold Jewellery</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:black;
+}
+/* ===== NAVBAR ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  background:#000;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#d4af37;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+}
+
+nav ul li{
+  margin-left:25px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#fff;
+  transition:0.3s;
+}
+
+nav ul li a:hover{
+  color:#d4af37;
+}
+
+/* Login Button */
+.login-btn{
+  padding:8px 18px;
+  background:#d4af37;
+  border:none;
+  color:black;
+  font-weight:bold;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-btn:hover{
+  background:white;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.hero img,
+.hero video{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  transition:opacity 1s ease-in-out;
+  object-fit: cover;
+background-color:black;
+
+}
+
+.hero-content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:white;
+  font-size:50px;
+  font-weight:bold;
+  text-align:center;
+  z-index:2;
+  text-shadow:2px 2px 10px black;
+}
+
+/* ===== COLLECTION ===== */
+.collection{
+  padding:60px 40px;
+  text-align:center;
+}
+
+.collection h2{
+  color:#d4af37;
+  margin-bottom:40px;
+  font-size:35px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+.grid img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.grid img:hover{
+  transform:scale(1.1);
+  box-shadow:0 8px 20px rgba(212,175,55,0.5);
+}
+
+/* ===== LOGIN POPUP ===== */
+.popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-content{
+  background:#1c1c1c;
+  padding:30px;
+  width:320px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.popup-content h3{
+  color:#d4af37;
+  margin-bottom:15px;
+}
+
+.popup-content input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:8px;
+}
+
+.popup-content button{
+  margin-top:10px;
+  padding:10px;
+  width:100%;
+  background:#d4af37;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.close{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:25px;
+  cursor:pointer;
+  color:white;
+}
+
+footer{
+  background:#000;
+  padding:20px;
+  text-align:center;
+  margin-top:50px;
+  color:#aaa;
+}
+/* ===== FILTER BAR ===== */
+.filter-bar{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:25px;
+  background:#111;
+}
+
+.filter-bar button{
+  padding:8px 18px;
+  border:none;
+  background:#d4af37;
+  color:black;
+  font-weight:bold;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.filter-bar button:hover{
+  background:white;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#111;
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.auto-price{
+  color:#ffd700;
+  font-weight:bold;
+  font-size:16px;
+  margin-top:8px;
+  letter-spacing:1px;
+  text-shadow:0 0 8px rgba(255,215,0,0.6);
+}
+.auto-price{
+  background:linear-gradient(45deg,#d4af37,#ffd700);
+  color:black;
+  font-weight:bold;
+  font-size:15px;
+  padding:6px 10px;
+  border-radius:20px;
+  display:inline-block;
+  margin-top:8px;
+  box-shadow:0 0 12px rgba(255,215,0,0.5);
+}
+.registerbtn {
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(45deg, #d4af37, #ffd700);
+  color: black;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.registerbtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px gold;
+}
+#contactPopup{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content textarea{
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 5px;
+}
+.luxury-info{
+  background:linear-gradient(to bottom,#000,#0d0d0d);
+  padding:80px 60px;
+  color:#ccc;
+}
+
+.luxury-info h2{
+  text-align:center;
+  color:#d4af37;
+  font-size:36px;
+  margin-bottom:50px;
+  text-shadow:0 0 15px rgba(212,175,55,0.6);
+}
+
+.luxury-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.luxury-box{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  transition:0.4s;
+  border:1px solid rgba(212,175,55,0.2);
+}
+
+.luxury-box h3{
+  color:#ffd700;
+  margin-bottom:15px;
+}
+
+.luxury-box:hover{
+  transform:translateY(-10px);
+  box-shadow:0 10px 30px rgba(212,175,55,0.5);
+  border:1px solid #d4af37;
+}--p25+
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="logo">LUXE GOLD</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Collection</a></li>
+    <li><a href="#" onclick="showContact()">Contact</a></li>
+    <li><button class="registerbtn" onclick="openLogin()">Register</button></li>
+  </ul>
+</nav>
+<div style="
+background: linear-gradient(90deg, #000, #1a1a1a);
+color: gold;
+padding: 10px 0;
+font-weight: bold;
+letter-spacing: 1px;
+box-shadow: 0 2px 10px rgba(255,215,0,0.4);
+">
+
+<marquee behavior="scroll" direction="left" scrollamount="25">
+✨ LIVE RATES ✨ 
+🟡 Gold: ₹2200 / gram  
+&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+⚪ Silver: ₹450 / gram  
+&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+Invest Smart. Shine Forever.
+</marquee>
+
+</div>
+
+<!-- ===== HERO ===== -->
+
+<div class="hero">
+  <img src="images/ss2.jpg" class="slide" style="opacity:1;">
+  <img src="images/ss2.jpg" class="slide">
+  <img src="images/ss3.jpg" class="slide">
+</div>
+<marquee behavior="scroll" direction="left" scrollamount="25">
+✨ LIVE RATES ✨ 
+🟡 Gold: ₹2200 / gram  
+&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+⚪ Silver: ₹450 / gram  
+&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+Invest Smart. Shine Forever.
+</marquee>
+
+
+<!-- ===== FILTER BAR ===== -->
+<div class="filter-bar">
+  <button onclick="filterItems('all')">All</button>
+  <button onclick="filterItems('ring')">Rings</button>
+  <button onclick="filterItems('necklace')">Necklace</button>
+  <button onclick="filterItems('earring')">Earrings</button>
+  <button onclick="filterItems('bangle')">Bangles</button>
+  <button onclick="filterItems('bracelet')">Bracelet</button>
+  <button onclick="filterItems('pendant')">Pendant</button>
+</div>
+
+<!-- ===== COLLECTION ===== -->
+<section class="collection">
+  <h2>Our Beautiful Collection</h2>
+<div class="grid">
+<!-- rings -->
+  <img src="images/ring1.jpg" class="ring">
+  <img src="images/ring2.jpg" class="ring">
+  <img src="images/ring3.jpg" class="ring">
+  <img src="images/ring4.jpg" class="ring">
+  <img src="images/ring5.jpg" class="ring">
+  <img src="images/ring6.jpg" class="ring">
+  <img src="images/ring7.jpg" class="ring">
+  <img src="images/ring8.jpg" class="ring">
+  <img src="images/ring9.jpg" class="ring">
+  <img src="images/ring10.jpg" class="ring">
+  <img src="images/ring11.jpg" class="ring">
+  <img src="images/ring12.jpg" class="ring">
+  <img src="images/ring13.jpg" class="ring">
+  <img src="images/ring14.jpg" class="ring">
+  <img src="images/ring15.jpg" class="ring">
+  <img src="images/ring16.jpg" class="ring">
+  <img src="images/ring17.jpg" class="ring">
+  <img src="images/ring18.jpg" class="ring">
+  <img src="images/ring19.jpg" class="ring">
+  <img src="images/ring20.jpg" class="ring">
+  <img src="images/ring21.jpg" class="ring">
+  <img src="images/ring22.jpg" class="ring">
+  <img src="images/ring23.jpg" class="ring">
+  <img src="images/ring24.jpg" class="ring">
+  <img src="images/ring25.jpg" class="ring">
+
+
+
+  <!-- necklace -->
+<img src="images/neck1.jpg" class="necklace">
+<img src="images/neck2.jpg" class="necklace">
+<img src="images/neck3.jpg" class="necklace">
+<img src="images/neck4.jpg" class="necklace">
+<img src="images/neck5.jpg" class="necklace">
+<img src="images/neck6.jpg" class="necklace">
+<img src="images/neck7.jpg" class="necklace">
+<img src="images/neck8.jpg" class="necklace">
+<img src="images/neck9.jpg" class="necklace">
+<img src="images/neck10.jpg" class="necklace">
+<img src="images/neck11.jpg" class="necklace">
+<img src="images/neck12.jpg" class="necklace">
+<img src="images/neck13.jpg" class="necklace">
+<img src="images/neck14.jpg" class="necklace">
+
+
+
+<!-- earnings -->
+<img src="images/ear1.jpg" class="earring">
+<img src="images/ear2.jpg" class="earring">
+<img src="images/ear3.jpg" class="earring">
+<img src="images/ear4.jpg" class="earring">
+<img src="images/ear5.jpg" class="earring">
+<img src="images/ear6.jpg" class="earring">
+<img src="images/ear7.jpg" class="earring">
+<img src="images/ear9.jpg" class="earring">
+<img src="images/ear10.jpg" class="earring">
+<img src="images/ear11.jpg" class="earring">
+<img src="images/ear12.jpg" class="earring">
+<img src="images/ear13.jpg" class="earring">
+<img src="images/ear14.jpg" class="earring">
+<img src="images/ear15.jpg" class="earring">
+<img src="images/ear16.jpg" class="earring">
+<img src="images/ear17.jpg" class="earring">
+<img src="images/ear18.jpg" class="earring">
+<img src="images/ear19.jpg" class="earring">
+<img src="images/ear20.jpg" class="earring">
+<img src="images/ear21.jpg" class="earring">
+<img src="images/ear22.jpg" class="earring">
+<img src="images/ear23.jpg" class="earring">
+<img src="images/ear24.jpg" class="earring">
+<img src="images/ear25.jpg" class="earring">
+
+<!-- bracelets -->
+<img src="images/bar1.jpg" class="bracelet">
+<img src="images/bar2.jpg" class="bracelet">
+<img src="images/bar3.jpg" class="bracelet">
+<img src="images/bar4.jpg" class="bracelet">
+<img src="images/bar5.jpg" class="bracelet">
+<img src="images/bar6.jpg" class="bracelet">
+<img src="images/bar7.jpg" class="bracelet">
+<img src="images/bar8.jpg" class="bracelet">
+<img src="images/bar9.jpg" class="bracelet">
+<img src="images/bar10.jpg" class="bracelet">
+<img src="images/bar11.jpg" class="bracelet">
+<img src="images/bar12.jpg" class="bracelet">
+<img src="images/bar13.jpg" class="bracelet">
+<img src="images/bar14.jpg" class="bracelet">
+<img src="images/bar15.jpg" class="bracelet">
+<img src="images/bar16.jpg" class="bracelet">
+<img src="images/bar17.jpg" class="bracelet">
+<img src="images/bar18.jpg" class="bracelet">
+<img src="images/bar19.jpg" class="bracelet">
+<img src="images/bar20.jpg" class="bracelet">
+<img src="images/bar21.jpg" class="bracelet">
+<img src="images/bar22.jpg" class="bracelet">
+<img src="images/bar23.jpg" class="bracelet">
+<img src="images/bar24.jpg" class="bracelet">
+<img src="images/bar25.jpg" class="bracelet">
+
+
+<!-- pendent -->
+<img src="images/pa1.jpg" class="pendant">
+<img src="images/pa2.jpg" class="pendant">
+<img src="images/pa3.jpg" class="pendant">
+<img src="images/pa4.jpg" class="pendant">
+<img src="images/pa5.jpg" class="pendant">
+<img src="images/pa6.jpg" class="pendant">
+<img src="images/pa7.jpg" class="pendant">
+<img src="images/pa8.jpg" class="pendant">
+<img src="images/pa9.jpg" class="pendant">
+<img src="images/pa10.jpg" class="pendant">
+<img src="images/pa11.jpg" class="pendant">
+<img src="images/pa12.jpg" class="pendant">
+<img src="images/pa13.jpg" class="pendant">
+<img src="images/pa14.jpg" class="pendant">
+
+
+
+<!-- bangles -->
+<img src="images/ban1.jpg" class="bangle">
+<img src="images/ban2.jpg" class="bangle">
+<img src="images/ban3.jpg" class="bangle">
+<img src="images/ban4.jpg" class="bangle">
+<img src="images/ban5.jpg" class="bangle">
+<img src="images/ban6.jpg" class="bangle">
+<img src="images/ban7.jpg" class="bangle">
+<img src="images/ban8.jpg" class="bangle">
+<img src="images/ban9.jpg" class="bangle">
+<img src="images/ban10.jpg" class="bangle">
+<img src="images/ban11.jpg" class="bangle">
+<img src="images/ban12.jpg" class="bangle">
+<img src="images/ban13.jpg" class="bangle">
+<img src="images/ban14.jpg" class="bangle">
+<img src="images/ban15.jpg" class="bangle">
+<img src="images/ban16.jpg" class="bangle">
+<img src="images/ban17.jpg" class="bangle">
+<img src="images/ban18.jpg" class="bangle">
+<img src="images/ban19.jpg" class="bangle">
+<img src="images/ban20.jpg" class="bangle">
+
+</div>
+
+</section>
+
+
+<!-- ===== LOGIN POPUP ===== -->
+<div class="popup" id="loginPopup">
+  <div class="popup-content">
+    <span class="close" onclick="closeLogin()">×</span>
+    <h3>Login Details</h3>
+    <input type="text" placeholder="Full Name">
+    <input type="text" placeholder="Mobile Number">
+    <input type="text" placeholder="Address">
+    <button onclick="loginUser()">Submit</button>
+  </div>
+</div>
+<div id="contactPopup" class="popup">
+  <div class="popup-content">
+    <h2>Contact Us</h2>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Your Message"></textarea>
+    <button onclick="sendMessage()">Send Message</button>
+  </div>
+</div>
+<div id="contactBox" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+">
+
+  <div style="
+  background:#111;
+  padding:20px;
+  width:300px;
+  border-radius:10px;
+  text-align:center;
+  color:gold;
+  ">
+
+    <h3>Contact Us</h3>
+    <p>Email: luxegold@gmail.com</p>
+    <p>Phone: +91 9876543210</p>
+
+    <button onclick="closeContact()" 
+    style="margin-top:10px;padding:6px 15px;background:gold;border:none;border-radius:5px;">
+      Close
+    </button>
+
+  </div>
+</div>
+<section class="luxury-info">
+
+<h2>Why Choose Luxe Gold Jewellery?</h2>
+
+<div class="luxury-grid">
+
+<div class="luxury-box">
+<h3>✨ Premium Craftsmanship</h3>
+<p>
+Every piece is handcrafted with precision and passion.
+We maintain purity, perfection, and luxury finishing.
+Hallmarked gold with guaranteed quality.
+</p>
+</div>
+
+<div class="luxury-box">
+<h3>👑 Royal Designs</h3>
+<p>
+Inspired by heritage and modern elegance.
+From bridal sets to daily wear collections.
+Timeless jewellery for every generation.
+</p>
+</div>
+
+<div class="luxury-box">
+<h3>💎 Certified Quality</h3>
+<p>
+100% certified gold and silver jewellery.
+Skin-friendly materials with long-lasting shine.
+Trusted by thousands of happy customers.
+</p>
+</div>
+
+<div class="luxury-box">
+<h3>🎁 Perfect for Every Occasion</h3>
+<p>
+Wedding collections, anniversary gifts,
+festive designs and statement pieces.
+Celebrate every moment with Luxe Gold.
+</p>
+</div>
+
+<div class="luxury-box">
+<h3>🌟 Exclusive Collections</h3>
+<p>
+Limited edition designs crafted uniquely.
+Modern trends with traditional artistry.
+Luxury that defines your personality.
+</p>
+</div>
+
+<div class="luxury-box">
+<h3>🚀 Premium Experience</h3>
+<p>
+Safe packaging and elegant presentation.
+Online browsing convenience.
+Luxury delivered to your doorstep.
+</p>
+</div>
+
+</div>
+</section>
+<footer>
+  © 2026 Luxe Gold Jewellery | All Rights Reserved
+</footer>
+
+<script>
+function openLogin(){
+  document.getElementById("loginPopup").style.display="flex";
+}
+
+function closeLogin(){
+  document.getElementById("loginPopup").style.display="none";
+}
+
+/* ===== AUTO GENERATE 60 IMAGES ===== */
+
+function filterItems(category){
+
+  let items = document.querySelectorAll(".grid img");
+
+  items.forEach(item => {
+
+    if(category === "all"){
+      item.style.display = "block";
+    }
+    else if(item.classList.contains(category)){
+      item.style.display = "block";
+    }
+    else{
+      item.style.display = "none";
+    }
+
+  });
+
+}
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+  slides[index].style.opacity = 0;
+  index = (index + 1) % slides.length;
+  slides[index].style.opacity = 1;
+}, 4000); // change every 4 seconds
+// AUTO CARD + PRICE GENERATOR
+let allImages = document.querySelectorAll(".grid img");
+
+allImages.forEach((img, i) => {
+
+  // create wrapper
+  let wrapper = document.createElement("div");
+  wrapper.className = "card";
+
+  // create price
+  let price = document.createElement("p");
+  price.className = "auto-price";
+
+  // random jewellery price logic
+  let randomPrice = 50000 + Math.floor(Math.random() * 450000);
+  price.innerText = "₹" + randomPrice.toLocaleString();
+
+  // wrap image
+  img.parentNode.insertBefore(wrapper, img);
+  wrapper.appendChild(img);
+  wrapper.appendChild(price);
+});
+function loginUser(){
+
+  let inputs = document.querySelectorAll(".popup-content input");
+
+  let name = inputs[0].value;
+  let mobile = inputs[1].value;
+  let address = inputs[2].value;
+
+  if(name === "" || mobile === "" || address === ""){
+    alert("Please fill all details");
+    return;
+  }
+
+  alert("Login Successfully ✅");
+
+  closeLogin();   // 👈 YE LINE IMPORTANT HAI
+}
+function closeLogin(){
+  document.getElementById("loginPopup").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
